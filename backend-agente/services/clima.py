@@ -1,8 +1,13 @@
 import requests
 
-def obtener_pronostico_la_paz():
+def obtener_pronostico_la_paz(lat: float = None, lon: float = None) -> str:
     
-    lat, lon = -16.4897, -68.1193
+    
+    LAT_DEFAULT = -16.4957
+    LON_DEFAULT = -68.1335
+    
+    lat = lat if lat is not None else LAT_DEFAULT
+    lon = lon if lon is not None else LON_DEFAULT
     
     url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=precipitation&forecast_days=1"
     

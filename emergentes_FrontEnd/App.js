@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, ActivityIndicator, Alert, TextInput, Modal } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as Location from 'expo-location';
 
-const API_URL = 'http://192.168.1.212:8000/analizar-foto/';
+const API_URL = 'http://192.168.1.203:8000/analizar-foto/';
 
 export default function App() {
   // Estados para controlar la aplicación
@@ -16,6 +17,9 @@ export default function App() {
   const [nombre, setNombre] = useState('');
   const [ocupacion, setOcupacion] = useState('');
   const [destino, setDestino] = useState('');
+
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   // cargar datos
   useEffect(() => {
@@ -30,6 +34,19 @@ export default function App() {
       }
     };
     cargarPerfil();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permiso de ubicación denegado. Se usará la ubicación por defecto.');
+        return;
+      }
+
+      let currentPosition = await Location.getCurrentPositionAsync({});
+      setLocation(currentPosition.coords);
+    })();
   }, []);
 
   const guardarPerfil = async () => {
@@ -82,6 +99,13 @@ export default function App() {
     formData.append('nombre', nombre);
     formData.append('ocupacion', ocupacion);
     formData.append('destino', destino);
+    if (location) {
+      formData.append('latitud', location.latitude.toString());
+      formData.append('longitud', location.longitude.toString());
+      console.log(`Enviando ubicación real: Lat: ${location.latitude}, Lon: ${location.longitude}`);
+    } else {
+      console.log("Enviando sin coordenadas reales");
+    }
 
     try {
       const response = await fetch(API_URL, {

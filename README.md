@@ -17,8 +17,8 @@ Antes de iniciar, asegúrate de tener instalado lo siguiente:
 
 Clona el repositorio desde tu terminal y accede a la carpeta raíz del proyecto:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd <NOMBRE_DEL_REPOSITORIO>
+git clone https://github.com/ChubiBF/AGENTE-DE-UTILIDAD.git
+cd AGENTE-DE-UTILIDAD
 ```
 
 ---

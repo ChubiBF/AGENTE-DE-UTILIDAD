@@ -4,8 +4,9 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, ActivityIn
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 
-const API_URL = 'http://192.168.1.203:8000/analizar-foto/';
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
+console.log(API_URL)
 export default function App() {
   // Estados para controlar la aplicación
   const [imagen, setImagen] = useState(null);

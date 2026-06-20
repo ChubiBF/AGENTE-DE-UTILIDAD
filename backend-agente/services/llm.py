@@ -17,14 +17,14 @@ INTERES_CUSTOM = ['pen', 'notebook', 'charger', 'canillera', 'sport_shoes', 'key
 UMBRALES_CUSTOM = {
     'notebook': 0.60,
     'keys': 0.35,
-    'sport_shoes': 0.8,
+    'sport_shoes': 0.78,
     'wallet': 0.40,
     'cap': 0.40,
-    'cream': 0.72,
+    'cream': 0.69,
     'charger': 0.25,
-    'Shorts': 0.40,
+    'Shorts': 0.30,
     'hat': 0.40,
-    'canillera': 0.50,
+    'canillera': 0.35,
     'jacket': 0.35,
     'pen': 0.25,
     'book': 0.30
@@ -84,7 +84,7 @@ def generar_prompt_cognitivo(nombre: str, ocupacion: str, destino: str, objetos:
     1. SKILL_01 (Equipamiento y Continuidad):
        - Seguridad Crítica: Verifica obligatoriamente la presencia de 'keys' (llaves) y 'wallet' (billetera). Si falta alguno, activa un estado de advertencia prioritario.
        - Dependencia Física de Hardware: Si se detecta 'laptop' o 'cell phone', inspecciona la mesa en busca de 'charger' (cargador). Si el cargador está ausente, infiere un riesgo inminente de interrupción de productividad académica/laboral.
-       - Herramientas de Estudio: Evalúa si para un '{ocupacion}' es pertinente contar con 'notebook' (cuaderno) y 'pen' (bolígrafo), u otros objetos importantes si es que aplica, por ejemplo laptop para estudiantes de carreras que si necesiten.
+       - Herramientas de Estudio: Evalúa si para un '{ocupacion}' es pertinente contar con 'notebook' (cuaderno) y 'pen' (bolígrafo), u otros objetos importantes si es que aplica, por ejemplo laptop para estudiantes de carreras como informatica.
 
     2. SKILL_02 (Entorno y Climatología Adaptativa para su ciudad):
        - Analiza el estado meteorológico enviado ('{clima}').

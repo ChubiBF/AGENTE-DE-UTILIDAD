@@ -12,4 +12,5 @@ services:
       - .:/app
     environment:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - SOLO_DETECCION=${SOLO_DETECCION}
     restart: always

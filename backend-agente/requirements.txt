@@ -6,4 +6,3 @@ google-generativeai
 opencv-python
 numpy
 python-dotenv
-cv2

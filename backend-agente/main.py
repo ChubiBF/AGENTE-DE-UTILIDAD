@@ -1,5 +1,6 @@
 import cv2
 import os
+import time
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
@@ -24,7 +25,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-SOLO_DETECCION = os.getenv("SOLO_DETECCION", False) 
+SOLO_DETECCION = os.getenv("SOLO_DETECCION", "false").lower() == "true"
+
+SOLO_DETECCION = False
+
+print(SOLO_DETECCION)
 
 @app.post("/analizar-foto/")
 async def analizar_foto(
@@ -35,7 +40,7 @@ async def analizar_foto(
     latitud: Optional[float] = Form(default=None),
     longitud: Optional[float] = Form(default=None)
 ):
-    
+    tiempo_inicio = time.perf_counter()
     contents = await file.read()
     frame = procesar_imagen_bytes(contents)
     
@@ -63,7 +68,16 @@ async def analizar_foto(
         texto_final = consultar_gemini(
             prompt_estructurado, nombre, objetos_relevantes, clima_actual
         )
-        
+    
+    tiempo_final = time.perf_counter()
+    tiempo_total_segundos = tiempo_final - tiempo_inicio
+    
+    # ver
+    modo_actual = "SOLO DETECCION" if SOLO_DETECCION else "COMPLETO"
+    print(f"\n========================================================")
+    print(f"Modo de ejecución: {modo_actual}")
+    print(f"Tiempo total de procesamiento: {tiempo_total_segundos:.4f} segundos")
+    print(f"========================================================\n")
     return {
         "objetos": objetos_relevantes,
         "respuesta": texto_final

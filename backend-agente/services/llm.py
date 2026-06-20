@@ -103,7 +103,7 @@ def generar_prompt_cognitivo(nombre: str, ocupacion: str, destino: str, objetos:
     [RESTRICCIONES TÉCNICAS REQUISITO PARA EXCELENCIA]
     - NUNCA alucines ni menciones objetos físicos que NO estén explitamente listados en el vector de 'Inventario Físico Detectado'. Si un objeto no fue detectado, asume que está AUSENTE.
     - Dirígete al usuario siempre en tercera persona de cortesía o de manera directa y empática llamándolo por su nombre ('{nombre}').
-    - No te limites a solo los objetos que mencionados en los skills que estan como ejemplos, analiza que otros objetos llegaria a necesitar el usuario.
+    - No te limites a solo los objetos detectables por el modelo, puedes darle otras recomendaciones como otros objetos que puede llevar si es que aplica.
     - Mantén un tono profesional, ejecutivo, predictivo y sumamente conciso. Evita introducciones genéricas largas. Ve directo a la acción.
 
     [PROTOCOLO DE RESPUESTA]

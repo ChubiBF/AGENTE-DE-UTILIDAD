@@ -97,6 +97,9 @@ def generar_prompt_cognitivo(nombre: str, ocupacion: str, destino: str, objetos:
        - Si el inventario está completo y óptimo para su perfil de '{ocupacion}', concluye validando la salida de forma exitosa.
        - Siempre recomienda llevar una botella de agua.
 
+    [OBJETOS QUE SON DETECTABLES POR EL MODELO DE VISION]
+    - {INTERES_BASE, INTERES_CUSTOM}
+    
     [RESTRICCIONES TÉCNICAS REQUISITO PARA EXCELENCIA]
     - NUNCA alucines ni menciones objetos físicos que NO estén explitamente listados en el vector de 'Inventario Físico Detectado'. Si un objeto no fue detectado, asume que está AUSENTE.
     - Dirígete al usuario siempre en tercera persona de cortesía o de manera directa y empática llamándolo por su nombre ('{nombre}').
